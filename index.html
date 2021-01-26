@@ -35,6 +35,10 @@
       .hide {
         display: none !important;
       }
+
+      span.badge {
+        line-height: 1.2;
+      }
     </style>
   </head>
   <body>
@@ -52,6 +56,19 @@
                 placeholder="Add task"
               />
               <label for="floatingInput">Add task</label>
+              <!-- ALTERNATIVE.JS -->
+              <select
+                class="form-select mt-3 py-0"
+                aria-label="Default select example"
+              >
+                <option selected value="0">Select Color</option>
+                <option value="1">Red</option>
+                <option value="2">Blue</option>
+                <option value="3">Green</option>
+                <option value="4">Yellow</option>
+              </select>
+              <!--  -->
+
               <button
                 type="submit"
                 id="addTaskBtn"
@@ -113,7 +130,7 @@
         <!-- task e filter -->
 
         <section
-          class="task-action rounded p-3 p-sm-4 p-md-5 mt-3 d-none animate__animated"
+          class="task-action rounded p-3 p-sm-4 p-md-5 mt-3 animate__animated"
         >
           <h2 class="display-6 text-center text-md-start">Tasks</h2>
 
@@ -147,6 +164,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="alternative.js"></script>
   </body>
 </html>
