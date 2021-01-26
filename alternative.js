@@ -1,5 +1,5 @@
 // Initialize tasks array
-const tasksMemory = [];
+const tasksMemory = checkLS().length === 0 ? [] : checkLS();
 
 // dom ref
 const addTaskBtn = document.querySelector('#addTaskBtn');
@@ -13,6 +13,8 @@ const filterSection = document.querySelector('section.task-action');
 // Events
 form.addEventListener('submit', addTask);
 clearTasksBtn.addEventListener('click', clearTasks);
+taskList.addEventListener('click', deleteSingleTask);
+document.addEventListener('DOMContentLoaded', loadLocalStorage);
 
 ////////////////
 // Functions-
@@ -42,6 +44,7 @@ function addTask(e) {
       color,
     });
 
+    storeToLS();
     showTasks();
   }
 }
@@ -50,13 +53,11 @@ function showTasks() {
   taskList.innerHTML = '';
 
   tasksMemory.forEach((task, idx) => {
-    task.index = idx;
+    task.index = idx + 1;
     const html = `
-      <li class='list-group-item d-flex'>
-         <span class='badge rounded-pill bg-${task.color} me-2'>${idx}</span>${
-      task.taskText
-    }
-        - <span class='date ms-2'>${viewDate(task.date)}</span>
+      <li class='list-group-item d-flex item-${task.index}'>
+         <span class='badge rounded-pill bg-${task.color} me-2'>${task.index}</span>${task.taskText}
+        - <span class='date ms-2'></span>
             <a href='#' class='ms-auto'>
         <i class='far fa-trash-alt'></i>
             </a>
@@ -82,4 +83,53 @@ function clearTasks() {
   console.log('pulizia');
   tasksMemory.length = 0;
   showTasks();
+  localStorage.clear();
+}
+
+// clear single
+function deleteSingleTask(e) {
+  // prevent default on a
+  e.preventDefault();
+
+  // delego evento
+  if (e.target.classList.contains('fa-trash-alt')) {
+    console.log(e.target);
+    // console.log(e.target.parentNode);
+    // console.log(e.target.parentNode.parentNode);
+    // console.log(e.target.parentNode.parentNode.classList);
+    // console.log(Array.from(e.target.parentNode.parentNode.classList));
+
+    const idxToRemove = Array.from(e.target.parentNode.parentNode.classList)
+      .find((el) => el.includes('item-'))
+      .split('-')[1];
+
+    // splice -1 because the index got before starts from 1
+    tasksMemory.splice(idxToRemove - 1, 1);
+  }
+  storeToLS();
+  showTasks();
+}
+
+////////////////
+// LOCAL STORAGE
+////////////////
+// check LS for key
+function checkLS() {
+  let storedTasks;
+  const tasksInStorage = localStorage.getItem('storedTasks');
+  storedTasks = tasksInStorage ? JSON.parse(tasksInStorage) : [];
+  console.log(storedTasks);
+  return storedTasks;
+}
+
+// load
+function loadLocalStorage() {
+  console.log('DOM LOADED 🔥');
+  showTasks();
+}
+
+// add
+function storeToLS() {
+  const tasksToPush = [...tasksMemory];
+  localStorage.setItem('storedTasks', JSON.stringify(tasksToPush));
 }
