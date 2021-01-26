@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <title>Do ME</title>
+    <style>
+      .task-content,
+      .task-action {
+        -webkit-box-shadow: 3px 4px 15px -1px rgba(133, 124, 133, 1);
+        -moz-box-shadow: 3px 4px 15px -1px rgba(133, 124, 133, 1);
+        box-shadow: 3px 4px 15px -1px rgba(133, 124, 133, 1);
+      }
+
+      .hide {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <main class="to-do-app">
+        <section class="task-content rounded p-3 p-sm-4 p-md-5">
+          <form action="node.js">
+            <h1 class="display-6 text-center text-md-start">Do Your Tasks</h1>
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="taskInput"
+                placeholder="Add task"
+              />
+              <label for="floatingInput">Add task</label>
+              <button
+                type="submit"
+                id="addTaskBtn"
+                class="btn btn-primary mt-3 w-100"
+              >
+                Add Task
+              </button>
+            </div>
+          </form>
+          <!-- modal -->
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            id="fireModal"
+            class="btn btn-primary d-none"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Launch static backdrop modal
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Task Needed
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">Please Insert A Task</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Ok
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- task e filter -->
+
+        <section
+          class="task-action rounded p-3 p-sm-4 p-md-5 mt-3 d-none animate__animated"
+        >
+          <h2 class="display-6 text-center text-md-start">Tasks</h2>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="filterTasksInput"
+              placeholder="Filter tasks"
+            />
+            <label for="floatingInput">Filter tasks</label>
+            <button
+              type="button"
+              id="clearTasksBtn"
+              class="btn btn-primary mt-3 w-100"
+            >
+              Clear Tasks
+            </button>
+          </div>
+
+          <!-- LIST -->
+          <ul class="list-group task-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="app.js"></script>
+  </body>
+</html>
