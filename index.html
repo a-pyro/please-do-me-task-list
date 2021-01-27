@@ -4,10 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
 
     <link
       rel="stylesheet"
@@ -32,18 +28,29 @@
         box-shadow: 3px 4px 15px -1px rgba(133, 124, 133, 1);
       }
 
-      .hide {
-        display: none !important;
+      .hide-section {
+        transform: scale(0);
+        transition: all 0.2s ease;
+      }
+
+      .show-section {
+        transition: all 0.2s ease;
       }
 
       span.badge {
         line-height: 1.2;
       }
+
+      .filter-badge {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
     <div class="container mt-4">
-      <main class="to-do-app">
+      <main class="to-do-app position-relative">
         <section class="task-content rounded p-3 p-sm-4 p-md-5">
           <form action="node.js">
             <h1 class="display-6 text-center text-md-start">Do Your Tasks</h1>
@@ -65,7 +72,6 @@
                 <option value="1">Red</option>
                 <option value="2">Blue</option>
                 <option value="3">Green</option>
-                <option value="4">Yellow</option>
               </select>
               <!--  -->
 
@@ -78,6 +84,7 @@
               </button>
             </div>
           </form>
+
           <!-- modal -->
           <!-- Button trigger modal -->
           <button
@@ -85,27 +92,23 @@
             id="fireModal"
             class="btn btn-primary d-none"
             data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
+            data-bs-target="#exampleModal"
           >
-            Launch static backdrop modal
+            Launch demo modal
           </button>
 
           <!-- Modal -->
           <div
             class="modal fade"
-            id="staticBackdrop"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
+            id="exampleModal"
             tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
+            aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">
-                    Task Needed
-                  </h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Enter Task</h5>
                   <button
                     type="button"
                     class="btn-close"
@@ -113,11 +116,11 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">Please Insert A Task</div>
+                <div class="modal-body">Please enter a task to continue</div>
                 <div class="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
                     Ok
@@ -130,7 +133,7 @@
         <!-- task e filter -->
 
         <section
-          class="task-action rounded p-3 p-sm-4 p-md-5 mt-3 animate__animated"
+          class="task-action rounded p-3 p-sm-4 p-md-5 mt-3 hide-section"
         >
           <h2 class="display-6 text-center text-md-start">Tasks</h2>
 
@@ -142,6 +145,60 @@
               placeholder="Filter tasks"
             />
             <label for="floatingInput">Filter tasks</label>
+            <!-- ---------------------RADIO FILTER---------------------- -->
+            <section class="radio-filter mt-3">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio0"
+                  value="secondary"
+                />
+                <span class="badge rounded-pill bg-secondary">Grey</span>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="danger"
+                />
+                <span class="badge rounded-pill bg-danger">Red</span>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="primary"
+                />
+
+                <span class="badge rounded-pill bg-primary">Blue</span>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio3"
+                  value="success"
+                />
+                <span class="badge rounded-pill bg-success">Green</span>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio4"
+                  value="all"
+                />
+                <span class="badge rounded-pill bg-warning text-dark">All</span>
+              </div>
+            </section>
             <button
               type="button"
               id="clearTasksBtn"
