@@ -141,6 +141,12 @@ function showFiltered() {
 
 function filterByRadio(e) {
   console.log(e.target.value);
+  const colorFilter = e.target.value;
+  const filtered = tasksMemory.filter((task) =>
+    colorFilter === 'all' ? true : task.color === colorFilter
+  );
+  console.log(filtered);
+  showTasks(filtered);
 }
 
 ////////////////
